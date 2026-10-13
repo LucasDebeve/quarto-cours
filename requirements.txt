@@ -1,0 +1,3 @@
+# Dépendances Python utilisées pour exécuter les encarts de démonstration
+jupyter
+matplotlib

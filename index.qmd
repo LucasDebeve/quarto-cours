@@ -1,0 +1,43 @@
+---
+title: "Cours de SNT & NSI"
+subtitle: "Cours, activités et exercices pour le lycée"
+format: live-html
+toc: false
+number-sections: false
+---
+
+Bienvenue ! Vous trouverez ici tous les cours de **SNT** (Sciences Numériques
+et Technologie, Seconde) et de **NSI** (Numérique et Sciences Informatiques,
+Première et Terminale).
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-4}
+### [SNT — Seconde](snt/index.qmd)
+Internet, le Web, les réseaux sociaux, les données, la photographie
+numérique, la localisation…
+:::
+
+::: {.g-col-12 .g-col-md-4}
+### [NSI — Première](nsi/premiere/index.qmd)
+Représentation des données, Python, algorithmique, architecture…
+:::
+
+::: {.g-col-12 .g-col-md-4}
+### [NSI — Terminale](nsi/terminale/index.qmd)
+Structures de données, récursivité, bases de données, réseaux…
+:::
+
+:::
+
+## Comment utiliser ce site ?
+
+- Chaque cours peut être **lu en ligne** ou **téléchargé en PDF**
+  (lien « PDF » dans la colonne de droite, rubrique *Autres formats*).
+- Les blocs marqués **Run Code** contiennent du **Python exécutable
+  directement dans votre navigateur** : modifiez le code, puis cliquez sur
+  le bouton pour l'exécuter. Rien à installer !
+- La loupe en haut de la page permet de **rechercher** dans tous les cours.
+- Le bouton en haut à droite permet de passer en **mode sombre**.
+
+Voir aussi la page [Accessibilité](accessibilite.qmd).

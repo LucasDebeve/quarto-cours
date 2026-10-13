@@ -1,0 +1,18 @@
+---
+title: "NSI — Terminale"
+format: live-html
+number-sections: false
+listing:
+  contents: "*.qmd"
+  type: table
+  sort: "order"
+  fields: [order, title, description]
+  field-display-names:
+    order: "N°"
+    title: "Chapitre"
+    description: "Contenu"
+  sort-ui: false
+  filter-ui: false
+---
+
+Numérique et Sciences Informatiques, classe de Terminale.

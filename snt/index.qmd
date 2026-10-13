@@ -1,0 +1,18 @@
+---
+title: "SNT — Seconde"
+format: live-html
+number-sections: false
+listing:
+  contents: "*.qmd"
+  type: table
+  sort: "order"
+  fields: [order, title, description]
+  field-display-names:
+    order: "N°"
+    title: "Chapitre"
+    description: "Contenu"
+  sort-ui: false
+  filter-ui: false
+---
+
+Sciences Numériques et Technologie : les grands thèmes du numérique.

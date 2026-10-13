@@ -1,0 +1,121 @@
+---
+title: "La photographie numérique"
+subtitle: "SNT — Thème « Photographie numérique »"
+description: "Pixels, définition, codage RVB des couleurs, poids d'une image."
+order: 1
+author: "M. Debeve"
+date: last-modified
+date-format: "D MMMM YYYY"
+---
+
+::: {.histoire}
+Le premier appareil photo numérique est inventé en 1975 par Steven Sasson,
+ingénieur chez Kodak. Il pesait 3,6 kg et enregistrait des images de
+0,01 mégapixel en 23 secondes !
+:::
+
+## Une image est un tableau de pixels
+
+::: {.definition title="Pixel"}
+Un **pixel** (*picture element*) est le plus petit élément d'une image
+numérique. Une image est un **tableau** de pixels, organisés en lignes et en
+colonnes.
+:::
+
+::: {.definition title="Définition d'une image"}
+La **définition** d'une image est son nombre de pixels, exprimé sous la forme
+*largeur × hauteur*.
+:::
+
+```{python}
+largeur, hauteur = 4000, 3000
+nb_pixels = largeur * hauteur
+print(f"Une image de {largeur} × {hauteur} contient {nb_pixels:,} pixels".replace(",", " "))
+print(f"soit {nb_pixels / 1_000_000} mégapixels.")
+```
+
+## Le codage des couleurs : RVB
+
+Chaque pixel est codé par **trois nombres** compris entre 0 et 255 : la
+quantité de **R**ouge, de **V**ert et de **B**leu.
+
+::: {.retenir}
+- `(255, 0, 0)` est le rouge, `(0, 255, 0)` le vert, `(0, 0, 255)` le bleu ;
+- `(0, 0, 0)` est le noir, `(255, 255, 255)` le blanc ;
+- chaque composante est codée sur **1 octet** : un pixel occupe donc
+  **3 octets**.
+:::
+
+Voici une petite image de 3 × 2 pixels construite avec Python :
+
+```{python}
+#| label: fig-pixels
+#| fig-cap: "Une image de 3 pixels de large et 2 pixels de haut"
+#| fig-alt: "Grille de six carrés de couleur : rouge, vert, bleu sur la première ligne ; jaune, noir, blanc sur la seconde."
+import matplotlib.pyplot as plt
+
+image = [
+    [(255, 0, 0),   (0, 255, 0), (0, 0, 255)],
+    [(255, 255, 0), (0, 0, 0),   (255, 255, 255)],
+]
+
+plt.imshow(image)
+plt.xticks(range(3))
+plt.yticks(range(2))
+plt.show()
+```
+
+## Le poids d'une image
+
+::: {.methode title="Calculer le poids d'une image non compressée"}
+$$\text{poids (octets)} = \text{largeur} \times \text{hauteur} \times 3$$
+:::
+
+```{pyodide}
+largeur = 4000
+hauteur = 3000
+poids = largeur * hauteur * 3
+print("Poids :", poids, "octets, soit", poids / 1_000_000, "Mo")
+```
+
+::: {.attention}
+En pratique, les images sont **compressées** (format JPEG, PNG…) : le fichier
+est beaucoup plus léger que le calcul ci-dessus.
+:::
+
+## Exercices
+
+::: {.exercice title="Poids d'une photo"}
+Un smartphone prend des photos de 12 mégapixels. Quel est le poids, en Mo,
+d'une photo non compressée ? Utilisez le bloc Python ci-dessus pour vérifier.
+:::
+
+::: {.solution}
+$12 \times 10^6 \times 3 = 36 \times 10^6$ octets, soit **36 Mo**.
+:::
+
+::: {.exercice title="Inverser les couleurs"}
+Le *négatif* d'un pixel `(r, v, b)` est `(255 - r, 255 - v, 255 - b)`.
+Complétez la fonction.
+
+```{pyodide}
+#| exercise: negatif
+def negatif(pixel):
+    r, v, b = pixel
+    return ______
+
+print(negatif((255, 0, 0)))   # doit afficher (0, 255, 255)
+```
+
+::: {.hint exercise="negatif"}
+La fonction doit renvoyer un **tuple** de trois valeurs.
+:::
+
+::: {.solution exercise="negatif"}
+```python
+def negatif(pixel):
+    r, v, b = pixel
+    return (255 - r, 255 - v, 255 - b)
+```
+:::
+:::

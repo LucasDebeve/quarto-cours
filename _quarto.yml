@@ -1,0 +1,125 @@
+# =============================================================================
+#  Configuration du site de cours (SNT & NSI)
+#  - HTML : site accessible aux élèves, avec Python interactif (Pyodide)
+#  - PDF  : un PDF par cours, généré automatiquement via LaTeX (LuaLaTeX)
+# =============================================================================
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "*.qmd"
+    - "!modeles/"
+    - "!README.md"
+
+lang: fr
+
+website:
+  title: "Cours de SNT & NSI"
+  description: "Cours, activités et exercices de SNT et NSI au lycée"
+  site-url: https://lucasdebeve.github.io/quarto-cours/
+  repo-url: https://github.com/LucasDebeve/quarto-cours
+  page-navigation: true
+  back-to-top-navigation: true
+  reader-mode: true
+  search:
+    location: navbar
+    type: overlay
+  navbar:
+    left:
+      - text: "Accueil"
+        href: index.qmd
+      - text: "SNT"
+        href: snt/index.qmd
+      - text: "NSI Première"
+        href: nsi/premiere/index.qmd
+      - text: "NSI Terminale"
+        href: nsi/terminale/index.qmd
+      - text: "Accessibilité"
+        href: accessibilite.qmd
+  sidebar:
+    - id: snt
+      title: "SNT"
+      style: docked
+      contents: snt
+    - id: nsi-premiere
+      title: "NSI Première"
+      style: docked
+      contents: nsi/premiere
+    - id: nsi-terminale
+      title: "NSI Terminale"
+      style: docked
+      contents: nsi/terminale
+  page-footer:
+    left: "Cours de SNT & NSI — Lycée"
+    right: "Réalisé avec [Quarto](https://quarto.org)"
+
+# Les filtres maison : encadrés pédagogiques (définition, à retenir, …)
+# et conversion des blocs Python interactifs pour le PDF.
+filters:
+  - filters/cours.lua
+  - filters/pyodide-pdf.lua
+
+# Options communes aux deux formats
+toc: true
+toc-title: "Sommaire"
+number-sections: true
+number-depth: 2
+crossref:
+  fig-title: "Figure"
+  tbl-title: "Tableau"
+  fig-prefix: "figure"
+  tbl-prefix: "tableau"
+
+# Exécution du code Python au moment du rendu (encarts de démonstration)
+execute:
+  echo: true
+  warning: false
+  freeze: auto   # ne ré-exécute un cours que si son code a changé
+
+# Afficher (ou non) les corrections des exercices.
+# Passez à false avant de distribuer un PDF « élève ».
+solutions: true
+
+format:
+  # ---------------------------------------------------------------- HTML ---
+  live-html:
+    theme:
+      light: [cosmo, styles/cours.scss]
+      dark: [darkly, styles/cours.scss, styles/cours-dark.scss]
+    respect-user-color-scheme: true
+    css: styles/accessibilite.css
+    toc-location: right
+    code-copy: true
+    code-overflow: wrap
+    code-tools: false
+    highlight-style: a11y
+    link-external-icon: true
+    link-external-newwindow: true
+    format-links: [pdf]   # lien « PDF » sur chaque page de cours
+    pyodide:
+      packages: []
+  # ----------------------------------------------------------------- PDF ---
+  pdf:
+    pdf-engine: lualatex
+    documentclass: scrartcl
+    papersize: a4
+    fontsize: 11pt
+    geometry:
+      - top=2cm
+      - bottom=2.2cm
+      - left=2cm
+      - right=2cm
+    mainfont: "Atkinson Hyperlegible"   # police très lisible (paquet TeX Live « atkinson »)
+    monofont: "DejaVu Sans Mono"
+    monofontoptions:
+      - Scale=0.9
+    linestretch: 1.25
+    colorlinks: true
+    linkcolor: "blue!60!black"
+    urlcolor: "blue!60!black"
+    toc: false
+    highlight-style: a11y
+    code-block-bg: "#f5f7fa"
+    code-block-border-left: "#2c7fb8"
+    include-in-header:
+      - latex/entete.tex

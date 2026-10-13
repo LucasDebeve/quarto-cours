@@ -1,0 +1,156 @@
+---
+title: "La récursivité"
+subtitle: "NSI Terminale — Langages et programmation"
+description: "Fonctions récursives, cas de base, pile d'appels, exemples classiques."
+order: 1
+author: "M. Debeve"
+date: last-modified
+date-format: "D MMMM YYYY"
+---
+
+## Définition
+
+::: {.definition title="Fonction récursive"}
+Une fonction est **récursive** lorsqu'elle s'appelle elle-même dans sa
+propre définition.
+:::
+
+::: {.propriete}
+Une fonction récursive correcte comporte toujours :
+
+1. un ou plusieurs **cas de base**, qui renvoient un résultat sans appel
+   récursif ;
+2. un ou plusieurs **appels récursifs**, sur des données « plus petites »,
+   qui se rapprochent du cas de base.
+:::
+
+## Un premier exemple : la factorielle
+
+Mathématiquement, $n! = n \times (n-1)!$ et $0! = 1$.
+
+```{python}
+def factorielle(n):
+    if n == 0:                       # cas de base
+        return 1
+    return n * factorielle(n - 1)    # appel récursif
+
+for n in range(6):
+    print(f"{n}! = {factorielle(n)}")
+```
+
+## La pile d'appels
+
+Chaque appel est mémorisé dans la **pile d'appels** jusqu'à ce que le cas de
+base soit atteint. Visualisons-la en affichant les appels :
+
+```{python}
+def factorielle_trace(n, profondeur=0):
+    retrait = "    " * profondeur
+    print(f"{retrait}factorielle({n})")
+    if n == 0:
+        resultat = 1
+    else:
+        resultat = n * factorielle_trace(n - 1, profondeur + 1)
+    print(f"{retrait}→ renvoie {resultat}")
+    return resultat
+
+factorielle_trace(3)
+```
+
+::: {.attention title="Récursion infinie"}
+Sans cas de base (ou si l'on ne s'en rapproche pas), la fonction s'appelle
+indéfiniment. Python s'arrête alors avec l'erreur `RecursionError` (par
+défaut au-delà de 1000 appels imbriqués).
+:::
+
+Testez vous-même ce qui se passe :
+
+```{pyodide}
+def sans_fin(n):
+    return sans_fin(n - 1)
+
+try:
+    sans_fin(10)
+except RecursionError as e:
+    print("Erreur :", e)
+```
+
+## Comparer itératif et récursif
+
+```{python}
+#| label: fig-fibo
+#| fig-cap: "Nombre d'appels de la version récursive naïve de Fibonacci"
+#| fig-alt: "Courbe exponentielle : le nombre d'appels passe de 1 pour n = 0 à plus de 20 000 pour n = 20."
+import matplotlib.pyplot as plt
+
+appels = 0
+def fibo(n):
+    global appels
+    appels += 1
+    if n < 2:
+        return n
+    return fibo(n - 1) + fibo(n - 2)
+
+valeurs_n, nb_appels = [], []
+for n in range(21):
+    appels = 0
+    fibo(n)
+    valeurs_n.append(n)
+    nb_appels.append(appels)
+
+plt.plot(valeurs_n, nb_appels, marker="o", color="#c0392b")
+plt.xlabel("n")
+plt.ylabel("Nombre d'appels à fibo")
+plt.grid(True)
+plt.show()
+```
+
+::: {.retenir}
+Une solution récursive est souvent **élégante**, mais pas toujours
+**efficace** : la @fig-fibo montre que `fibo` naïve recalcule de nombreuses
+fois les mêmes valeurs. On verra plus tard la *mémoïsation* et la
+*programmation dynamique*.
+:::
+
+## Exercices
+
+::: {.exercice title="Somme des entiers"}
+Écrire une fonction récursive `somme(n)` qui renvoie $0 + 1 + 2 + \dots + n$.
+
+```{pyodide}
+#| exercise: somme
+def somme(n):
+    if n == 0:
+        return ______
+    return ______
+
+print(somme(10))   # doit afficher 55
+```
+
+::: {.hint exercise="somme"}
+$\text{somme}(n) = n + \text{somme}(n-1)$.
+:::
+
+::: {.solution exercise="somme"}
+```python
+def somme(n):
+    if n == 0:
+        return 0
+    return n + somme(n - 1)
+```
+:::
+:::
+
+::: {.exercice title="Puissance"}
+Écrire une fonction récursive `puissance(x, n)` qui calcule $x^n$ pour
+$n \geq 0$, sans utiliser l'opérateur `**`.
+:::
+
+::: {.solution}
+```python
+def puissance(x, n):
+    if n == 0:
+        return 1
+    return x * puissance(x, n - 1)
+```
+:::

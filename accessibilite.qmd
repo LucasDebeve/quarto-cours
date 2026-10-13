@@ -1,0 +1,35 @@
+---
+title: "Accessibilité"
+format: live-html
+number-sections: false
+---
+
+Ce site a été conçu pour être utilisable par **toutes et tous**.
+
+## Ce qui est mis en place
+
+- **Police lisible** : le texte utilise la police *Atkinson Hyperlegible*,
+  conçue par le Braille Institute pour les personnes malvoyantes ; elle
+  distingue bien les caractères proches (`l`, `I`, `1`, `O`, `0`).
+- **Texte aéré** : grande taille de caractères, interligne confortable,
+  lignes courtes, texte non justifié.
+- **Contrastes élevés** et couleurs de code adaptées (thème *a11y*).
+- **Mode sombre** : bouton en haut de page ; le réglage de votre système
+  est respecté par défaut.
+- **Mode lecture** : bouton en haut de page pour masquer les menus.
+- **Navigation au clavier** : touche <kbd>Tab</kbd> pour passer d'un
+  élément à l'autre, avec un contour de focus bien visible.
+- **Liens soulignés** : ils ne sont pas repérables uniquement par la couleur.
+- **Images décrites** : chaque image comporte un texte alternatif lu par
+  les lecteurs d'écran.
+- **Version PDF** de chaque cours, imprimable (par exemple en A3 pour un
+  agrandissement).
+- **Animations réduites** si votre système le demande.
+- **Aucun pistage** : pas de publicité, pas de mesure d'audience, polices
+  hébergées sur le site (aucun appel à un service externe hors Python
+  interactif).
+
+## Un problème ?
+
+Si un élément du site vous gêne ou n'est pas accessible, signalez-le à
+votre professeur : il sera corrigé.

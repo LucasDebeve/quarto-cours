@@ -1,0 +1,12 @@
+/.quarto/
+/_site/
+*_files/
+*.pdf
+*.tex
+!latex/*.tex
+*.log
+*.aux
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+/_site-sans-corrections/

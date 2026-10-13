@@ -1,0 +1,107 @@
+---
+title: "Titre du cours"
+subtitle: "NSI Première — Chapitre X"          # ou « SNT — Thème … »
+description: "Résumé en une ligne (affiché dans la liste des cours)."
+order: 99                                       # position dans la liste
+author: "M. Debeve"
+date: last-modified
+date-format: "D MMMM YYYY"
+# solutions: false      # décommentez pour masquer les corrections de ce cours
+---
+
+<!--
+  MODÈLE DE COURS — copiez ce fichier dans snt/, nsi/premiere/ ou
+  nsi/terminale/ puis renommez-le (ex. : 02-boucles.qmd).
+-->
+
+## Première partie
+
+Texte du cours en **Markdown**. Formules : $x^2 + 1$.
+
+::: {.definition title="Nom de la notion"}
+Contenu de la définition.
+:::
+
+::: {.propriete}
+Énoncé d'une propriété.
+:::
+
+::: {.retenir}
+Les points essentiels.
+:::
+
+::: {.methode title="Comment faire ?"}
+Les étapes d'une méthode.
+:::
+
+::: {.exemple}
+Un exemple.
+:::
+
+::: {.attention}
+Une erreur fréquente.
+:::
+
+::: {.histoire}
+Une anecdote historique.
+:::
+
+## Python de démonstration (exécuté à la génération)
+
+Le code et son résultat apparaissent dans le site **et** dans le PDF.
+
+```{python}
+print("Bonjour !")
+```
+
+Graphique avec légende et texte alternatif (accessibilité) :
+
+```{python}
+#| label: fig-exemple
+#| fig-cap: "Légende de la figure"
+#| fig-alt: "Description de l'image pour les lecteurs d'écran."
+import matplotlib.pyplot as plt
+plt.plot([1, 2, 3], [1, 4, 9])
+plt.show()
+```
+
+Masquer le code et ne garder que le résultat : ajoutez `#| echo: false`.
+
+## Python interactif (exécuté dans le navigateur de l'élève)
+
+Dans le PDF, ce bloc est imprimé comme du code ordinaire.
+
+```{pyodide}
+nom = "NSI"
+print("Bonjour", nom)
+```
+
+## Exercices
+
+::: {.exercice title="Exercice simple"}
+Énoncé.
+:::
+
+::: {.solution}
+Correction (repliée sur le site, affichée dans le PDF si `solutions: true`).
+:::
+
+::: {.exercice title="Exercice interactif"}
+Remplacez les `______` :
+
+```{pyodide}
+#| exercise: mon_exercice
+resultat = ______
+print(resultat)
+```
+
+::: {.hint exercise="mon_exercice"}
+Un indice (site uniquement).
+:::
+
+::: {.solution exercise="mon_exercice"}
+```python
+resultat = 42
+```
+:::
+:::

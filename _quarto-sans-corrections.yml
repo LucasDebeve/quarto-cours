@@ -1,0 +1,8 @@
+# Profil « sans corrections » : génère le site et les PDF sans les solutions.
+#   quarto render --profile sans-corrections
+# Le résultat est placé dans _site-sans-corrections/ .
+project:
+  output-dir: _site-sans-corrections
+solutions: false
+live:
+  show-solutions: false   # masque aussi les solutions des exercices interactifs

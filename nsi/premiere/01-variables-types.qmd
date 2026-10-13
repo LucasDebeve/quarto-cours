@@ -1,0 +1,154 @@
+---
+title: "Variables et types de base en Python"
+subtitle: "NSI Première — Chapitre 1"
+description: "Variables, affectation, types int, float, str, bool ; conversions."
+order: 1
+author: "M. Debeve"
+date: last-modified
+date-format: "D MMMM YYYY"
+---
+
+## Les variables
+
+::: {.definition title="Variable"}
+Une **variable** est un *nom* qui désigne une *valeur* stockée dans la
+mémoire de l'ordinateur. On crée (ou modifie) une variable par une
+**affectation**, notée `=` en Python.
+:::
+
+```{python}
+age = 16
+prenom = "Ada"
+print(prenom, "a", age, "ans.")
+```
+
+::: {.attention}
+En Python, `=` n'est **pas** une égalité mathématique : `x = x + 1` signifie
+« calculer `x + 1`, puis ranger le résultat dans `x` ».
+:::
+
+### À vous de jouer !
+
+Le bloc ci-dessous est **interactif** : modifiez le code puis cliquez sur
+**Run Code** pour l'exécuter directement dans votre navigateur.
+
+```{pyodide}
+x = 5
+x = x + 1
+print("x vaut", x)
+```
+
+## Les types de base
+
+Chaque valeur possède un **type**, que l'on obtient avec la fonction `type()`.
+
+| Type    | Signification       | Exemples              |
+|---------|---------------------|-----------------------|
+| `int`   | nombre entier       | `0`, `-12`, `2024`    |
+| `float` | nombre « à virgule » | `3.14`, `-0.5`, `1e3` |
+| `str`   | chaîne de caractères | `"bonjour"`, `'NSI'`  |
+| `bool`  | booléen             | `True`, `False`       |
+
+: Les quatre types de base {#tbl-types}
+
+```{python}
+for valeur in [42, 3.14, "NSI", True]:
+    print(repr(valeur), "est de type", type(valeur).__name__)
+```
+
+::: {.retenir}
+- Les nombres décimaux s'écrivent avec un **point** : `3.14` et non `3,14`.
+- Les chaînes de caractères s'écrivent entre guillemets `"…"` ou `'…'`.
+- `True` et `False` prennent une **majuscule**.
+:::
+
+::: {.attention title="Les flottants sont des approximations"}
+Les nombres de type `float` sont stockés en binaire avec un nombre limité de
+chiffres : certains calculs donnent un résultat légèrement faux.
+
+```{python}
+print(0.1 + 0.2)
+print(0.1 + 0.2 == 0.3)
+```
+:::
+
+## Conversions de types
+
+::: {.methode title="Convertir une valeur"}
+On utilise le nom du type comme une fonction : `int(…)`, `float(…)`,
+`str(…)`, `bool(…)`.
+:::
+
+```{python}
+saisie = "17"            # par exemple, ce que renvoie input()
+nombre = int(saisie)
+print(nombre + 3)
+print(str(nombre) + "3")
+```
+
+## Visualiser une évolution
+
+Les encarts Python peuvent aussi produire des **graphiques**. Ici, l'évolution
+d'une variable `capital` placée à 5 % par an.
+
+```{python}
+#| label: fig-capital
+#| fig-cap: "Évolution d'un capital de 100 € placé à 5 % par an"
+#| fig-alt: "Courbe croissante du capital, de 100 euros l'année 0 à environ 265 euros l'année 20."
+import matplotlib.pyplot as plt
+
+capital = 100
+annees, valeurs = [], []
+for annee in range(21):
+    annees.append(annee)
+    valeurs.append(capital)
+    capital = capital * 1.05
+
+plt.plot(annees, valeurs, marker="o")
+plt.xlabel("Année")
+plt.ylabel("Capital (€)")
+plt.grid(True)
+plt.show()
+```
+
+La @fig-capital montre que le capital croît de plus en plus vite.
+
+## Exercices
+
+::: {.exercice title="Échanger deux variables"}
+Complétez le programme pour que `a` et `b` échangent leurs valeurs.
+Remplacez les `______` par votre code.
+
+```{pyodide}
+#| exercise: echange
+a = 3
+b = 7
+______
+print("a =", a, "et b =", b)   # doit afficher a = 7 et b = 3
+```
+
+::: {.hint exercise="echange"}
+Utilisez une troisième variable `temp` pour mémoriser la valeur de `a`.
+:::
+
+::: {.solution exercise="echange"}
+```python
+a = 3
+b = 7
+temp = a
+a = b
+b = temp
+```
+En Python, on peut aussi écrire directement `a, b = b, a`.
+:::
+:::
+
+::: {.exercice title="Prédire le type"}
+Donner le type de chacune des expressions suivantes :
+`7 / 2`, `7 // 2`, `"7" + "2"`, `7 > 2`.
+:::
+
+::: {.solution}
+`7 / 2` vaut `3.5` (`float`) ; `7 // 2` vaut `3` (`int`) ;
+`"7" + "2"` vaut `"72"` (`str`) ; `7 > 2` vaut `True` (`bool`).
+:::

@@ -1,0 +1,34 @@
+% =============================================================================
+%  entete.tex — Personnalisation LaTeX commune à tous les PDF de cours
+%  (inclus automatiquement par Quarto via `include-in-header`)
+% =============================================================================
+
+% --- En-têtes et pieds de page ------------------------------------------------
+\usepackage{scrlayer-scrpage}
+\usepackage{lastpage}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\makeatletter
+\ihead{\small\sffamily\@title}
+\makeatother
+\ohead{\small\sffamily Lycée -- SNT \& NSI}
+\cfoot{\small\sffamily Page~\thepage{}~/~\pageref*{LastPage}}
+\setkomafont{pagehead}{\normalfont\color{gray!70!black}}
+\setkomafont{pagefoot}{\normalfont\color{gray!70!black}}
+
+% --- Titres : couleur sobre et bon contraste ----------------------------------
+\usepackage{xcolor}
+\definecolor{titre}{HTML}{1F4E79}
+\addtokomafont{disposition}{\color{titre}}
+\addtokomafont{title}{\color{titre}}
+
+% --- Paragraphes aérés (meilleure lisibilité) --------------------------------
+\KOMAoptions{parskip=half}
+\raggedright           % pas de justification : évite les espaces irréguliers
+
+% --- Mention au-dessus des blocs Python interactifs ---------------------------
+\newcommand{\pyinteractif}[1]{%
+  \par\smallskip\noindent
+  {\small\sffamily\color{titre}\fbox{\textbf{>\_}}~\textit{#1 -- à tester
+  dans la version en ligne du cours}}\par\nopagebreak[4]%
+}
