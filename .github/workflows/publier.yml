@@ -39,6 +39,7 @@ jobs:
       - name: Installer les polices utilisées par les PDF
         run: |
           export PATH="$HOME/.TinyTeX/bin/x86_64-linux:$PATH"
+          tlmgr update --self
           tlmgr install atkinson dejavu
           luaotfload-tool -u
           echo "$HOME/.TinyTeX/bin/x86_64-linux" >> "$GITHUB_PATH"
