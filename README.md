@@ -81,10 +81,8 @@ Prérequis (une seule fois) :
 
 ```bash
 # 1. Installer Quarto : https://quarto.org/docs/get-started/
-# 2. Installer LaTeX (TinyTeX, léger) et la police utilisée dans les PDF
+# 2. Installer LaTeX (TinyTeX, léger)
 quarto install tinytex
-tlmgr update --self
-tlmgr install atkinson dejavu
 # 3. Installer les bibliothèques Python des démonstrations
 pip install -r requirements.txt
 ```
@@ -100,6 +98,19 @@ quarto render --profile sans-corrections   # version sans corrections
 
 Les paquets LaTeX manquants sont installés automatiquement par Quarto lors
 du premier rendu.
+
+**Polices des PDF** : les fichiers d'Atkinson Hyperlegible et de DejaVu Sans
+Mono sont fournis dans `latex/polices/`. Pour que LuaLaTeX les utilise,
+installez-les sur votre ordinateur (double-clic sur chaque fichier), ou
+indiquez le dossier avant le rendu :
+
+```bash
+export OSFONTDIR="$PWD/latex/polices"      # macOS / Linux
+$env:OSFONTDIR = "$PWD\latex\polices"     # Windows (PowerShell)
+```
+
+Sans cela, le PDF est quand même généré, avec DejaVu Sans ou la police
+LaTeX par défaut.
 
 > **Astuce** : grâce à `freeze: auto`, le code Python d'un cours n'est
 > ré-exécuté que lorsqu'il a changé. Les résultats sont mémorisés dans le
@@ -135,4 +146,5 @@ Le site est alors disponible à l'adresse
 - Les boutons de l'éditeur interactif (*Run Code*, *Start Over*, *Hint*,
   *Show Solution*) sont fournis en anglais par l'extension quarto-live.
 - Licences : extension quarto-live (MIT), police Atkinson Hyperlegible
-  (SIL Open Font License, voir `styles/polices/OFL.txt`).
+  (SIL Open Font License, voir `styles/polices/OFL.txt`), DejaVu (licence
+libre, voir `latex/polices/LICENSE-DejaVu.txt`).
