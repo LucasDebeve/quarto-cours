@@ -83,6 +83,7 @@ Prérequis (une seule fois) :
 # 1. Installer Quarto : https://quarto.org/docs/get-started/
 # 2. Installer LaTeX (TinyTeX, léger) et la police utilisée dans les PDF
 quarto install tinytex
+tlmgr update --self
 tlmgr install atkinson dejavu
 # 3. Installer les bibliothèques Python des démonstrations
 pip install -r requirements.txt
