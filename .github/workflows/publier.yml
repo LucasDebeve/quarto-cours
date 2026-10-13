@@ -36,13 +36,10 @@ jobs:
         with:
           tinytex: true
 
-      - name: Installer les polices utilisées par les PDF
-        run: |
-          export PATH="$HOME/.TinyTeX/bin/x86_64-linux:$PATH"
-          tlmgr update --self
-          tlmgr install atkinson dejavu
-          luaotfload-tool -u
-          echo "$HOME/.TinyTeX/bin/x86_64-linux" >> "$GITHUB_PATH"
+      # Les polices des PDF sont fournies dans latex/polices/ :
+      # OSFONTDIR indique à LuaLaTeX où les trouver.
+      - name: Rendre les polices des PDF accessibles à LuaLaTeX
+        run: echo "OSFONTDIR=$GITHUB_WORKSPACE/latex/polices" >> "$GITHUB_ENV"
 
       - name: Générer le site et les PDF
         uses: quarto-dev/quarto-actions/render@v2

@@ -3,6 +3,25 @@
 %  (inclus automatiquement par Quarto via `include-in-header`)
 % =============================================================================
 
+% --- Polices --------------------------------------------------------------------
+% Atkinson Hyperlegible (texte) et DejaVu Sans Mono (code). Les fichiers sont
+% fournis dans latex/polices/ : LuaLaTeX les trouve si ce dossier est indiqué
+% dans la variable d'environnement OSFONTDIR (fait automatiquement par le
+% workflow GitHub) ou si les polices sont installées sur l'ordinateur.
+% Si une police est introuvable, on se replie sur une autre : la compilation
+% n'échoue jamais pour une question de police.
+\IfFontExistsTF{Atkinson Hyperlegible}{%
+  \setmainfont{Atkinson Hyperlegible}%
+  \setsansfont{Atkinson Hyperlegible}%   titres, en-têtes
+}{%
+  \IfFontExistsTF{DejaVu Sans}{%
+    \setmainfont{DejaVu Sans}\setsansfont{DejaVu Sans}}{%
+    \renewcommand{\familydefault}{\sfdefault}}%
+}
+\IfFontExistsTF{DejaVu Sans Mono}{%
+  \setmonofont[Scale=0.9]{DejaVu Sans Mono}%
+}{}
+
 % --- En-têtes et pieds de page ------------------------------------------------
 \usepackage{scrlayer-scrpage}
 \usepackage{lastpage}

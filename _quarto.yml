@@ -109,10 +109,8 @@ format:
       - bottom=2.2cm
       - left=2cm
       - right=2cm
-    mainfont: "Atkinson Hyperlegible"   # police très lisible (paquet TeX Live « atkinson »)
-    monofont: "DejaVu Sans Mono"
-    monofontoptions:
-      - Scale=0.9
+    # Polices : choisies dans latex/entete.tex (Atkinson Hyperlegible,
+    # DejaVu Sans Mono), fournies dans latex/polices/.
     linestretch: 1.25
     colorlinks: true
     linkcolor: "blue!60!black"
